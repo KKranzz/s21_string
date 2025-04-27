@@ -1,0 +1,48 @@
+#include "../s21_string.h"
+#include <string.h>
+#test memset_1
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  int ch = ' ';
+  s21_size_t n = strlen(s1);
+  ck_assert_str_eq(memset(s1, ch, n), s21_memset(s2, ch, n));
+#test memset_2
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  int ch = ' ';
+  s21_size_t n = 5;
+  ck_assert_str_eq(memset(s1, ch, n), s21_memset(s2, ch, n));
+#test memset_3
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  int ch = 104;
+  s21_size_t n = 5;
+  ck_assert_str_eq(memset(s1, ch, n), s21_memset(s2, ch, n));
+#test memset_4
+  char s1[] = "";
+  char s2[] = "";
+  int ch = '\0';
+  s21_size_t n = 0;
+  ck_assert_str_eq(memset(s1, ch, n), s21_memset(s2, ch, n));
+#test memset_5
+  char s1[] = "Hello";
+  char s2[] = "Hello";
+  int ch = '\0';
+  s21_size_t n = 4;
+  ck_assert_str_eq(memset(s1, ch, n), s21_memset(s2, ch, n));
+#test memset_6
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  int ch = 99;
+  s21_size_t n = 7;
+  ck_assert_str_eq(memset(s1, ch, n), s21_memset(s2, ch, n));
+#test memset_7
+ char *s1 = malloc(15 * sizeof(char));
+ char *s2 = malloc(15 * sizeof(char));
+ s21_size_t n = 7;
+ int ch = 99;
+ s21_strncpy(s1, "Hello, world!", 15);
+ s21_strncpy(s2, "Hello, world!", 15);
+ ck_assert_str_eq(memset(s1, ch, n), s21_memset(s2, ch, n));
+ free(s1);
+ free(s2);

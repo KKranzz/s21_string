@@ -1,0 +1,164 @@
+#include "../s21_string.h"
+#include <string.h>
+#test memcmp_1
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  s21_size_t n = 0;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_2
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  s21_size_t n = 1;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_3
+  char s1[] = "Hello, world!";
+  char s2[] = "";
+  s21_size_t n = 1;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_4
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  s21_size_t n = 14;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_5
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  s21_size_t n = sizeof(s1) - 1;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_6
+  char s1[] = "123456789";
+  char s2[] = "123456789";
+  s21_size_t n = 0;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_7
+  char s1[] = "123456789";
+  char s2[] = "123456789";
+  s21_size_t n = 1;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_8
+  char s1[] = "123456789";
+  char s2[] = "123456789";
+  s21_size_t n = 9;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_9
+  char s1[] = "123456789";
+  char s2[] = "123456789";
+  s21_size_t n = 10;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_10
+ char s1[] = "123456789";
+ char s2[] = "123456789";
+ s21_size_t n = 9;
+ int n1 = memcmp(s1, s2, n);
+ int n2 = s21_memcmp(s1, s2, n);
+ ck_assert_int_eq(n1, n2);
+#test memcmp_11
+  char s1[] = "1234 56789";
+  char s2[] = "1234 56789";
+  s21_size_t n = 5;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_12
+  char s1[] = "123456789";
+  char s2[] = "123456789";
+  s21_size_t n = 10;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_13
+  char s1[] = "Сравнивает первые n байтов str1 и str2.";
+  char s2[] = ""; 
+  s21_size_t n = 1;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_14
+  char s1[] = "Сравнивает первые n байтов str1\0 и str2.";
+  char s2[] = "Сравнивает первые n байтов str1\0 и str2.";
+  s21_size_t n = 32;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test memcmp_15
+  char s1[] = "";
+  char s2[] = "";
+  s21_size_t n = 0;
+  int n1 = memcmp(s1, s2, n);
+  int n2 = s21_memcmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+
+#test memcmp_16
+char s1[] = "test";
+char s2[] = "";
+s21_size_t n = 1;
+int n1 = memcmp(s1, s2, n);
+int n2 = s21_memcmp(s1, s2, n);
+ck_assert_int_eq(n1, n2);
+
+#test memcmp_17
+char s1[] = "";
+char s2[] = "test";
+s21_size_t n = 1;
+int n1 = memcmp(s1, s2, n);
+int n2 = s21_memcmp(s1, s2, n);
+ck_assert_int_eq(n1, n2);
+
+#test memcmp_18
+char s1[] = "Hello";
+char s2[] = "HelloWorld";
+s21_size_t n = sizeof(s1) - 1;
+int n1 = memcmp(s1, s2, n);
+int n2 = s21_memcmp(s1, s2, n);
+ck_assert_int_eq(n1, n2);
+
+#test memcmp_19
+char s1[] = "Hello";
+char s2[] = "HelloWorld";
+s21_size_t n = 10;
+int expected_result = s1[5] - s2[5];
+int n1 = s21_memcmp(s1, s2, n);
+ck_assert_int_eq(n1, expected_result);
+
+#test memcmp_20
+char s1[] = "Hello";
+char s2[] = "Hello";
+s21_size_t n = 0;
+int n1 = s21_memcmp(s1, s2, n);
+ck_assert_int_eq(n1, 0);
+
+#test memcmp_21
+char s1[] = "HelloWorld";
+char s2[] = "HelloWorld!";
+s21_size_t n = 11;
+int n1 = s21_memcmp(s1, s2, n);
+ck_assert_int_ne(n1, 0);
+
+#test memcmp_22
+char *s1 = malloc(11 * sizeof(char));
+char *s2 = malloc(12 * sizeof(char));
+s21_size_t n = 11;
+s21_strncpy(s1, "HelloWorld", 11);
+s21_strncpy(s2, "HelloWorld!", 12);
+int n1 = s21_memcmp(s1, s2, n);
+ck_assert_int_ne(n1, 0);
+free(s1);
+free(s2);

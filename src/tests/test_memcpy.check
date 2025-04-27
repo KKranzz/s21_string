@@ -1,0 +1,79 @@
+#include "../s21_string.h"
+#include <string.h>
+#test memcpy_1
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  char s3[] = "MAF";
+  s21_size_t n = 4;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_2
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  char s3[] = "\0";
+  s21_size_t n = 1;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_3
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  char s3[] = "FFFFFFFFFFFFFFFFF";
+  s21_size_t n = 0;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_4
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  char s3[] = "HAL";
+  s21_size_t n = 3;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_5
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  char s3[] = "123456";
+  s21_size_t n = 2;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_6
+  char s1[] = "";
+  char s2[] = "";
+  char s3[] = "code is life";
+  s21_size_t n = 0;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_7
+  char s1[] = "old old string :)";
+  char s2[] = "old old string :)";
+  char s3[] = "new_string";
+  s21_size_t n = strlen(s3);
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_8
+  char s1[] = "hhhhh\0jhjhj020";
+  char s2[] = "hhhhh\0jhjhj020";
+  char s3[] = "mini";
+  s21_size_t n = 3;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_9
+  char s1[] = "123456";
+  char s2[] = "123456";
+  char s3[] = "S";
+  s21_size_t n = 1;
+  ck_assert_str_eq(memcpy(s1, s3, n), s21_memcpy(s2, s3, n));
+#test memcpy_10
+  char s1[] = "123456";
+  char s2[] = "123456";
+  char s3[] = "";
+  s21_size_t n = 0;
+  memcpy(s1, s3, n);
+  s21_memcpy(s2, s3, n);
+  ck_assert_str_eq(s1, "123456");
+  ck_assert_str_eq(s2, "123456");
+ #test memcpy_11
+ char *s1 = malloc(7 * sizeof(char));
+ char *s2 = malloc(7 * sizeof(char));
+ char *s3 = malloc(1 * sizeof(char));
+ s21_size_t n = 0;
+ s21_strncpy(s1, "123456", 7);
+ s21_strncpy(s2, "123456", 7);
+ memcpy(s1, s3, n);
+ s21_memcpy(s2, s3, n);
+ ck_assert_str_eq(s1, "123456");
+ ck_assert_str_eq(s2, "123456");
+ free(s1);
+ free(s2);
+ free(s3);

@@ -1,0 +1,60 @@
+#include "../s21_string.h"
+#include <string.h>
+#test memchr_1
+  char str[] = "Hello, world!";
+  int ch = ' ';
+  s21_size_t len = strlen(str);
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_2
+  char str[] = "Hello, world!";
+  int ch = 104;
+  s21_size_t len = strlen(str);
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_3
+  char str[] = "Hello, world!";
+  int ch = '1';
+  s21_size_t len = strlen(str);
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_4
+  char str[] = "Hello, world!";
+  int ch = 65;
+  s21_size_t len = strlen(str);
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_5
+  char str[] = "Hello, world!";
+  int ch = 'l';
+  s21_size_t len = 10;
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_6
+  char str[] = "Hello, world!";
+  int ch = '\0';
+  s21_size_t len = 5;
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_7
+  char str[] = "727272772727";
+  int ch = '3';
+  s21_size_t len = strlen(str);
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_8
+  char str[] = "0000000060000";
+  int ch = '6';
+  s21_size_t len = 0;
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_9
+  char str[] = "1234567";
+  int ch = 'G';
+  s21_size_t len = strlen(str);
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+#test memchr_10
+  char str[] = "k\n\0";
+  int ch = '\\';
+  s21_size_t len = 3;
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+ #test memchr_11
+  char* str = malloc(3 * sizeof(char));
+  s21_strncpy(str, "k\n", 2);
+  str[2] = '\0'; 
+  int ch = '\\'; 
+  s21_size_t len = 3;
+  ck_assert_ptr_eq(memchr(str, ch, len), s21_memchr(str, ch, len));
+  free(str);

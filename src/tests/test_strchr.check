@@ -1,0 +1,56 @@
+#include "../s21_string.h"
+#include <string.h>
+
+#test strchr_1
+char string[20] = "Hello, world!";
+ck_assert_ptr_eq(s21_strchr(string, 'w'), strchr(string, 'w'));
+
+#test strchr_2
+char string[20] = "Hello, world!";
+ck_assert_ptr_eq(s21_strchr(string, 'z'), strchr(string, 'z'));
+
+#test strchr_3
+char string[20] = "Hello, world!";
+ck_assert_ptr_eq(s21_strchr(string, 'H'), strchr(string, 'H'));
+
+#test strchr_4
+char string[20] = "Hello, world!";
+ck_assert_ptr_eq(s21_strchr(string, '!'), strchr(string, '!'));
+
+#test strchr_5
+char string[20] = "Hello, world!";
+ck_assert_ptr_eq(s21_strchr(string, '\0'), strchr(string, '\0'));
+
+#test strchr_6
+char string[20] = "";
+ck_assert_ptr_eq(s21_strchr(string, 'a'), strchr(string, 'a'));
+
+#test strchr_7
+char string[20] = "";
+ck_assert_ptr_eq(s21_strchr(string, '\0'), strchr(string, '\0'));
+
+#test strchr_8
+char string[20] = "abacada";
+ck_assert_ptr_eq(s21_strchr(string, 'a'), strchr(string, 'a'));
+
+#test strchr_9
+char string[20] = "@#$%^&*()_+";
+ck_assert_ptr_eq(s21_strchr(string, '^'), strchr(string, '^'));
+
+#test strchr_11
+char string[20] = "1234567890";
+ck_assert_ptr_eq(s21_strchr(string, '5'), strchr(string, '5'));
+
+#test strchr_12
+char string[100] = "This is a long string to test the performance of strchr implementation.";
+ck_assert_ptr_eq(s21_strchr(string, 'p'), strchr(string, 'p'));
+
+#test strchr_13
+char string[20] = "abcdefg";
+ck_assert_ptr_eq(s21_strchr(string, 'z'), strchr(string, 'z'));
+
+#test strchr_14
+char *string = malloc(20 * sizeof(char));
+s21_strncpy(string, "abcdefg", 8);
+ck_assert_ptr_eq(s21_strchr(string, 'z'), strchr(string, 'z'));
+free(string);

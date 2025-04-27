@@ -1,0 +1,48 @@
+#include "../s21_string.h"
+#include <string.h>
+#test strpbrk_1
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+#test strpbrk_2
+  char s1[] = "Hello, world!";
+  char s2[] = "!";
+  ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+#test strpbrk_3
+  char s1[] = "";
+  char s2[] = "He";
+  ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+#test strpbrk_4
+  char s1[] = "\0";
+  char s2[] = "";
+  ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+#test strpbrk_5
+  char s1[] = "";
+  char s2[] = "";
+  ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+#test strpbrk_6
+  char s1[] = "1234567890123456789000000";
+  char s2[] = "098765098765";
+  ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+#test strpbrk_7
+    char *s1 = (char*)malloc(20 * sizeof(char));
+    char s2[] = "xyz";
+    if (s1 != NULL) {
+        strcpy(s1, "abcdefghijklmnop");
+        ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+        free(s1);
+    }
+#test strpbrk_8
+    char *s1 = (char*)malloc(10 * sizeof(char));
+    char *s2 = (char*)malloc(5 * sizeof(char));
+
+    if (s1 != NULL && s2 != NULL)
+    {
+      strcpy(s1, "012345678");
+      strcpy(s2, "456");
+
+      ck_assert_pstr_eq(strpbrk(s1, s2), s21_strpbrk(s1, s2));
+
+      free(s1);
+      free(s2);
+    }

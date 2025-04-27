@@ -1,0 +1,61 @@
+#include "../s21_string.h"
+#include <string.h>
+#test strcspn_1
+  char s1[] =
+      "Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!";
+  char s2[] = "Hello, world!";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_2
+  char s1[] =
+      "Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!";
+  char s2[] =
+      "Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_3
+  char s1[] = "v";
+  char s2[] = "vrum vrum vruuuuuum";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_4
+  char s1[] = "";
+  char s2[] = "Hello, world!";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_5
+  char s1[] = "Hello, world!";
+  char s2[] = "";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_6
+  char s1[] = "9";
+  char s2[] = "99";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_7
+  char s1[] = "1234567890";
+  char s2[] = "1234567890";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_8
+  char s1[] = "1234567890";
+  char s2[] = "1234567890";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_9
+  char s1[] = "1234";
+  char s2[] = "1234567890";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_10
+  char s1[] = "1234567890";
+  char s2[] = "12345";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_11
+  char s1[] = "";
+  char s2[] = "";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_12
+  char s1[] = "1234567890";
+  char s2[] = "1234567890hehehheehehhe";
+  ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+#test strcspn_13
+char *s1 = malloc(11 * sizeof(char));
+char *s2 = malloc(27 * sizeof(char));
+s21_strncpy(s1, "1234567890", 11);
+s21_strncpy(s2, "1234567890hehehheehehhe", 27);
+ck_assert_int_eq(strcspn(s1, s2), s21_strcspn(s1, s2));
+free(s1);
+free(s2);

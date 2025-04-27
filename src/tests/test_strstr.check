@@ -1,0 +1,77 @@
+#include "../s21_string.h"
+#include <string.h>
+#test strstr_1
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_2
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, P!";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_3
+  char s1[] = "Hello, world!";
+  char s2[] = "!";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_4
+  char s1[] =
+      "Hello, world!Hello, world!Hello, world!Hello, world!Hello, world!";
+  char s2[] = "world";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_5
+  char s1[] = "";
+  char s2[] = "";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_6
+  char s1[] = "Hello, world!";
+  char s2[] = "";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_7
+  char s1[] = "";
+  char s2[] = "Hello, P!";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_8
+  char s1[] = "69917020";
+  char s2[] = "0";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_9
+  char s1[] = "69917020";
+  char s2[] = "\0";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_10
+  char s1[] = "69917020";
+  char s2[] = "32859160 8v3489-74 tvc4y8719c n4[nqymu uv 4vm9cw";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_11
+  char s1[] = "1   345 345 345 345 345";
+  char s2[] = "345";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_12
+  char s1[] = "kittikitti";
+  char s2[] = "kit";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_13
+  char s1[] = "summer";
+  char s2[] = "summm";
+  ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+#test strstr_14
+    char *s1 = (char*)malloc(20 * sizeof(char));
+    char s2[] = "world";
+    if (s1 != NULL) {
+        strcpy(s1, "Hello, world!");
+        ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+        free(s1);
+    }
+#test strstr_15
+    char *s1 = (char*)malloc(15 * sizeof(char));
+    char *s2 = (char*)malloc(5 * sizeof(char));
+
+    if(s1 != NULL && s2 != NULL)
+    {
+      strcpy(s1, "0123456789abc");
+      strcpy(s2, "abc");
+
+      ck_assert_pstr_eq(strstr(s1, s2), s21_strstr(s1, s2));
+
+      free(s1);
+      free(s2);
+    }

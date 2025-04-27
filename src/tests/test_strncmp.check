@@ -1,0 +1,89 @@
+#include "../s21_string.h"
+#include <string.h>
+#test strncmp_1
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, world!";
+  s21_size_t n = 14;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_2
+  char s1[] = "Hello, world!";
+  char s2[] = "Hello, worldj";
+  s21_size_t n = 14;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_3
+  char s1[] = "";
+  char s2[] = "";
+  s21_size_t n = 1;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_4
+  char s1[] = "f";
+  char s2[] = "";
+  s21_size_t n = 1;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_5
+  char s1[] = "";
+  char s2[] = "j";
+  s21_size_t n = 1;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_6
+  char s1[] = "1234567890123456789";
+  char s2[] = "1234567890123456789";
+  s21_size_t n = 19;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_7
+  char s1[] = "1234567890123456789";
+  char s2[] = "1234567890123456789";
+  s21_size_t n = 2;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_8
+  char s1[] = "g124243425";
+  char s2[] = "124243424";
+  s21_size_t n = 0;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_9
+  char s1[] = "";
+  char s2[] = "";
+  s21_size_t n = 1;
+  int n1 = strncmp(s1, s2, n);
+  int n2 = s21_strncmp(s1, s2, n);
+  ck_assert_int_eq(n1, n2);
+#test strncmp_10
+  char *s1 = (char*)malloc(15 * sizeof(char));
+  char *s2 = (char*)malloc(15 * sizeof(char));
+  s21_size_t n = 10;
+  if (s1 != NULL && s2 != NULL) {
+    strcpy(s1, "abcdefghij");
+    strcpy(s2, "abcdefghij");
+    ck_assert_int_eq(strncmp(s1, s2, n), s21_strncmp(s1, s2, n));
+    free(s1);
+    free(s2);
+  }
+#test strncmp_11
+    char *s1 = (char*)malloc(10 * sizeof(char));
+    char *s2 = (char*)malloc(5 * sizeof(char));
+    s21_size_t n = 8;
+
+    if(s1 != NULL && s2 != NULL)
+    {
+        strcpy(s1, "012345678");
+        strcpy(s2, "0123");
+        ck_assert_int_eq(strncmp(s1, s2, n), s21_strncmp(s1, s2, n));
+        free(s1);
+        free(s2);
+    }

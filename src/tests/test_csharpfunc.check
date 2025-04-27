@@ -1,0 +1,180 @@
+#include "../s21_string.h"
+
+#test to_upper_1
+  char str[] = "ABCDefg/*-3456";
+  char expected[] = "ABCDEFG/*-3456";
+  char *result = s21_to_upper(str);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test to_upper_2
+  char *str = S21_NULL;
+  char *expected = S21_NULL;
+  char *result = s21_to_upper(str);
+  ck_assert_ptr_eq(result, expected);
+
+#test to_lower_1
+  char str[] = "ABCDefg/*-3456";
+  char expected[] = "abcdefg/*-3456";
+  char *result = s21_to_lower(str);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test to_lower_2
+  char *str = S21_NULL;
+  char *expected = S21_NULL;
+  char *result = s21_to_lower(str);
+  ck_assert_ptr_eq(result, expected);
+
+#test insert_1
+  char str1[] = "abcd";
+  char str2[] = "123";
+  int index = 1;
+  char expected[] = "a123bcd";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_2
+  char str1[] = "abcd";
+  char str2[] = "123";
+  int index = 4;
+  char expected[] = "abcd123";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_3
+  char str1[] = "abcd";
+  char str2[] = "123";
+  int index = 0;
+  char expected[] = "123abcd";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_4
+  char str1[] = "abcd";
+  char str2[] = "123";
+  int index = 15;
+  char *expected = S21_NULL;
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_ptr_eq(result, expected);
+
+#test insert_5
+  char str1[] = "hello";
+  char str2[] = "";
+  int index = 2;
+  char expected[] = "hello";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_6
+  char str1[] = "";
+  char str2[] = "world";
+  int index = 0;
+  char expected[] = "world";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_7
+  char *str1 = S21_NULL;
+  char str2[] = "example";
+  int index = 0;
+  char expected[] = "example";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_8
+  char str1[] = "start";
+  char *str2 = S21_NULL;
+  int index = 2;
+  char *expected = S21_NULL;
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_ptr_eq(result, expected);
+
+#test insert_9
+  char str1[] = "";
+  char str2[] = "";
+  int index = 0;
+  char expected[] = "";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_10
+  char str1[] = "boundary";
+  char str2[] = "case";
+  int index = 8;
+  char expected[] = "boundarycase";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_11
+  char str1[] = "abc";
+  char str2[] = "def";
+  int index = 3;
+  char expected[] = "abcdef";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test insert_12
+  char str1[] = "abc";
+  char str2[] = "def";
+  int index = 0;
+  char expected[] = "defabc";
+  char *result = s21_insert(str1, str2, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test trim_1
+  char str[] = ".*/vabcd123";
+  char trim_chars[] = ".*123/v";
+  char expected[] = "abcd";
+  char *result = s21_trim(str, trim_chars);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test trim_2
+  char str[] = ".*/vab123cd123";
+  char trim_chars[] = ".*123/v";
+  char expected[] = "ab123cd";
+  char *result = s21_trim(str, trim_chars);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test trim_3
+  char *str = S21_NULL;
+  char trim_chars[] = ".*123/v";
+  char *expected = S21_NULL;
+  char *result = s21_trim(str, trim_chars);
+  ck_assert_ptr_eq(result, expected);
+
+#test trim_4
+  char str[] = ".*/vabcd123";
+  char *trim_chars = S21_NULL;
+  char *expected = S21_NULL;
+  char *result = s21_trim(str, trim_chars);
+  ck_assert_ptr_eq(result, expected);
+
+#test insert_null_src
+  char *src = S21_NULL;
+  char str[] = "123";
+  s21_size_t index = 0;
+  char expected[] = "123";
+  char *result = s21_insert(src, str, index);
+  ck_assert_str_eq(result, expected);
+  free(result);
+
+#test trim_all_chars_trimmed
+  char str[] = "aaa";
+  char trim_chars[] = "a";
+  char expected[] = "";
+  char *result = s21_trim(str, trim_chars);
+  ck_assert_str_eq(result, expected);
+  free(result);

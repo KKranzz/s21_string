@@ -1,0 +1,56 @@
+#include "../s21_string.h"
+#include <string.h>
+#test strrchr_1
+  char s[] = "Hello, world!";
+  int ch = 'h';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_2
+  char s[] = "Hello, world!";
+  int ch = '\0';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_3
+  char s[] = "Hello, world!";
+  int ch = ',';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_4
+  char s[] = "Hello, world!";
+  int ch = 33;
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_5
+  char s[] = "Hello, DUDE!";
+  int ch = 'P';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_6
+  char s[] = "Hello, world!";
+  int ch = 'w';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_7
+  char s[] = "Hello, world!";
+  int ch = '0';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_8
+  char s[] = "Hello, world!";
+  int ch = 'm';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+#test strrchr_9
+    char *s = (char*)malloc(20 * sizeof(char));
+    int ch = 'l';
+    if (s != NULL) {
+        strcpy(s, "Hello, world!");
+        ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+        free(s);
+    }
+#test strrchr_10
+    char *s = (char*)malloc(15 * sizeof(char));
+     int ch = '5';
+    if(s != NULL)
+    {
+      strcpy(s, "12345123451234");
+
+       ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));
+      free(s);
+    }
+#test strrchr_11
+  char s[] = "Hello dudes, my name is Dudson Dudeeson";
+  int ch = 'D';
+  ck_assert_pstr_eq(strrchr(s, ch), s21_strrchr(s, ch));

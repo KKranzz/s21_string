@@ -1,0 +1,59 @@
+#include "../s21_string.h"
+#include <string.h>
+#test strlen_1
+  char str[] = "Hello, world!";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_2
+  char str[] = "21313-04=3stuvwxyz21524--5=432 ";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_3
+  char str[] = "Hello, world!";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_4
+  char str[] = "\0";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_5
+  char str[] = "today a good day. may be";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_6
+  char str[] = "";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_7
+  char str[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_8
+  char str[] = "    123456    !@#$=^&*()_+  ";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_9
+  char str[] = "\n\n\n\n\n\n\n\nHEHEHEHEEH MAF\n\n\nGAV\n\n";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_10
+  char str[] = "\0\0\0\0\n";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_11
+  char str[] = "";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_12
+  char str[] = "\t\t";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_13
+  char str[] = "\0FURR-FURR";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_14
+  char str[] = "HZ \0 hz";
+  ck_assert_int_eq(strlen(str), s21_strlen(str));
+#test strlen_15
+  char *str = (char *)malloc(16 * sizeof(char));
+  if (str != NULL) {
+    strcpy(str, "Dynamic string!");
+    ck_assert_int_eq(strlen(str), s21_strlen(str));
+    free(str);
+  }
+#test strlen_16
+    char *str = (char*)malloc(51 * sizeof(char));
+    if(str != NULL)
+    {
+        strcpy(str, "01234567890123456789012345678901234567890123456789");
+         ck_assert_int_eq(strlen(str), s21_strlen(str));
+        free(str);
+    }
